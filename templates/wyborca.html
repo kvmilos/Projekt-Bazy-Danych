@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wyborca</title>
+</head>
+<body>
+    <h1>Wyborca</h1>
+    <ul>
+        <li><a href="{{ url_for('zglaszanie') }}">Zgłoś kandydata do wyborów</a></li>
+        <li><a href="{{ url_for('glosowanie') }}">Głosuj w wyborach</a></li>
+        <li><a href="{{ url_for('ogladanie_wynikow') }}">Obejrzyj wyniki wyborów</a></li>
+    </ul>
+
+{% block wyborca %}{% endblock %}
+</body>
+</html>

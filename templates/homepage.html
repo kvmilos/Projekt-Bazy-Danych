@@ -15,6 +15,7 @@
             if (checkBox.checked == true){
                 indexField.disabled = true;
                 indexField.classList.add("disabled");
+                indexField.value = "";
             } else {
                 indexField.disabled = false;
                 indexField.classList.remove("disabled");
@@ -26,7 +27,7 @@
     <h1>Strona wyborów studenckich</h1>
     <form method="POST" action="/login">
         <label for="index">Nr indeksu:</label>
-        <input type="text" id="index" name="index" maxlength="6" pattern="[0-9]+" required oninput="this.value = this.value.replace(/[^0-9]/g, '')"><br><br>
+        <input type="text" id="index" name="index" maxlength="6" pattern="[0-9]+" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
         <input type="checkbox" id="komisja" name="komisja" onchange="toggleIndexField()"><label for="komisja">Zaloguj jako komisja</label><br><br>
         <label for="password">Hasło:</label>
         <input type="password" id="password" name="password" required><br><br>
