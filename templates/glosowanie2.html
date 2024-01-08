@@ -1,0 +1,41 @@
+{% extends "wyborca.html" %}
+{% block wyborca %}
+
+<p1>Głosowanie na kandydatów w wyborach</p1>
+<!-- najpierw wybierz wybory z listy /value/, nastepnie wyswietl na ekranie na ile osob mozna zaglosowac w wybranych wyborach, potem wypisz wszystkich mozliwych kandydatow ale przy kazdym daj opcje do glosowania i na koniec daj przycisk zatwierdz glos-->
+<form action="{{ url_for('glosowanie2') }}" method="post">
+    <p1>Wybory: {{ wybory[0][1] }} </p1> <br>
+    <p1>W tych wyborach można zagłosować na {{wybory[0][2]}} kandydata/ów. </p1><br>
+    <p1>Wybierz kandydata/ów, na którego/ych chcesz oddać głos:</p1>
+{% for kandydat in kandydaci %}
+    <br>
+    <label>
+        <input type="checkbox" name="kandydaci" value="{{ kandydat[0] }}">{{ kandydat[5] }} {{ kandydat[6] }}
+    </label>
+{% endfor %}
+<br>
+<input type="submit" value="Zagłosuj">
+</form>
+
+<script>
+window.onload = function() {
+    var limit = {{ wybory[0][2] }};
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            var checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+            checkboxes.forEach(function(c) {
+                if (checked >= limit) {
+                    if (!c.checked) {
+                        c.disabled = true;
+                    }
+                } else {
+                    c.disabled = false;
+                }
+            });
+        });
+    });
+};
+</script>
+
+{% endblock %}

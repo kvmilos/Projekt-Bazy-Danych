@@ -9,15 +9,6 @@
             <option value="{{ wybor[0] }}">{{ wybor[1] }}</option>
         {% endfor %}
     </select><br>
-    <p1>W tych wyborach można zagłosować na {{x}} kandydatów spośród {{y}}. </p1><br>
-    <p1>Wybierz kandydata/ów, na którego/ych chcesz oddać głos:</p1>
-    {% for kandydat in kandydaci %}
-        <label>
-            <input type="checkbox" name="kandydaci" value="{{ kandydat[0] }}">
-            {{ kandydat[1] }}
-        </label>
-    {% endfor %}
-    <br>
-    <input type="submit" value="Zagłosuj">
-</form>
+    <button type="submit">Zatwierdź</button>
+</form> 
 {% endblock %}
