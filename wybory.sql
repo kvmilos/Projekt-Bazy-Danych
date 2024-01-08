@@ -34,3 +34,15 @@ CREATE TABLE Glosowanie (
   FOREIGN KEY (indeks) REFERENCES Uzytkownicy (indeks),
   FOREIGN KEY (id_wybory) REFERENCES Wybory (id)
 );
+
+INSERT INTO Uzytkownicy VALUES 
+('000000', 'KomKomisja2024', 't', 'Komisja', 'Wyborowa'),
+('123456', 'test', 'f', 'Adam', 'Testowy'), 
+('222222', 'haslo', 'f', 'Jan', 'Kowalski'),
+('444444', 'lol', 'f', 'Bartosz', 'Bebecki');
+
+INSERT INTO Wybory (id, nazwa, liczba_posad, termin_zglaszania, termin_rozpoczecia, termin_zakonczenia) VALUES
+(1, 'Przewodniczacy SU', 1, '2024-04-01', '2022-04-02', '2022-04-20'),
+(2, 'Wiceprzewodniczacy SU', 2, '2024-04-01', '2024-04-02', '2024-04-20'),
+(3, 'Rada ds. rownosci', 30, '2024-03-01', '2023-03-02', '2023-03-30'),
+(4, 'losowe', 100, '2024-02-01', '2024-02-02', '2024-12-31');
