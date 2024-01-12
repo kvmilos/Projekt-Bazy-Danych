@@ -1,7 +1,6 @@
 {% extends "wyborca.html" %}
 {% block wyborca %}
 <p1>Głosowanie na kandydatów w wyborach</p1>
-<!-- najpierw wybierz wybory z listy /value/, nastepnie wyswietl na ekranie na ile osob mozna zaglosowac w wybranych wyborach, potem wypisz wszystkich mozliwych kandydatow ale przy kazdym daj opcje do glosowania i na koniec daj przycisk zatwierdz glos-->
 <form action="{{ url_for('glosowanie') }}" method="post">
     <p1>Wybory:</p1>
     <select name="wybory">

@@ -95,13 +95,24 @@ def glosowanie2():
         conn.commit()
         return render_template('wyborca2.html')
     
-
-@app.route("/ogladanie_wynikow")
+@app.route("/ogladanie_wynikow", methods = ['GET', 'POST'])
 def ogladanie_wynikow():
     if not session.get('logged') or session.get('index') == '000000':
         return redirect(url_for('login'))
-    index = session.get('index')
-    return render_template('ogladanie_wynikow.html')
+    cur.execute("SELECT * FROM Wybory")
+    wybory = cur.fetchall()
+    if request.method == 'GET':
+        return render_template('ogladanie_wynikow.html', wybory=wybory)
+    if request.method == 'POST':
+        id_wyb = request.form['wybory']
+        cur.execute("SELECT * FROM Kandydaci NATURAL JOIN Uzytkownicy WHERE id_wybory = %s ORDER BY glosy DESC", (id_wyb))
+        kandydaci = cur.fetchall()
+        # change the order: glosy will be kandydaci[0, 5, 6, 2]
+        glosy = []
+        for kandydat in kandydaci:
+            glosy.append([kandydat[0], kandydat[5], kandydat[6], kandydat[2]])
+        print(glosy)
+        return render_template('ogladanie2.html', wybory=wybory, glosy = glosy)
 
 @app.route("/komisja")
 def komisja():

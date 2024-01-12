@@ -1,6 +1,13 @@
 {% extends "wyborca.html" %}
 {% block wyborca %}
-<head>
-    <title>Ogladanie wynikow</title>
-</head>
+<p1>Wyniki wyborów</p1>
+<form action="{{ url_for('ogladanie_wynikow') }}" method="post">
+    <p1>Wybory:</p1>
+    <select name="wybory">
+        {% for wybor in wybory %}
+            <option value="{{ wybor[0] }}">{{ wybor[1] }}</option>
+        {% endfor %}
+    </select><br>
+    <button type="submit">Pokaż wyniki</button>
+</form> 
 {% endblock %}

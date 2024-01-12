@@ -1,0 +1,21 @@
+{% extends "wyborca.html" %}
+{% block wyborca %}
+<p1>Wyniki wyborów</p1> <br>
+    <p1>Wybory: {{ wybory[0][1] }} </p1> <br>
+    <!-- make a table with results of the elections from . It will have columns:  indeks, imie, nazwisko, liczba glosow and it will take the data from {{ glosy}}-->
+    <table>
+        <tr>
+            <th>Indeks</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Liczba glosow</th>
+        </tr>
+        {% for glos in glosy %}
+        <tr>
+            <td>{{ glos[0] }}</td>
+            <td>{{ glos[1] }}</td>
+            <td>{{ glos[2] }}</td>
+            <td>{{ glos[3] }}</td>
+        </tr>
+        {% endfor %}
+{% endblock %}
