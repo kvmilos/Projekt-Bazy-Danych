@@ -50,9 +50,13 @@ def zglaszanie():
     if request.method == 'POST':
         indeks_kandydata = request.form['index']
         id_wyborow = request.form['wybory']
-        cur.execute("INSERT INTO Kandydaci VALUES (%s, %s)", (indeks_kandydata, id_wyborow))
-        conn.commit()
-        return render_template('wyborca2.html')
+        cur.execute("SELECT * FROM Uzytkownicy WHERE indeks = %s", (indeks_kandydata,))
+        if cur.fetchone() is None:
+            return render_template("wyborca_blad.html")
+        else:
+            cur.execute("INSERT INTO Kandydaci VALUES (%s, %s)", (indeks_kandydata, id_wyborow))
+            conn.commit()
+            return render_template('wyborca2.html')
     return render_template('zglaszanie.html', wybory=wybory)
 
 @app.route("/glosowanie", methods = ['GET', 'POST'])
