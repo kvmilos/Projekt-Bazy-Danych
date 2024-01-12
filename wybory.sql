@@ -14,6 +14,7 @@ CREATE TABLE Wybory (
   termin_zglaszania DATE NOT NULL,
   termin_rozpoczecia DATE NOT NULL,
   termin_zakonczenia DATE NOT NULL,
+  czy_opublikowane BOOL NOT NULL DEFAULT false,
   PRIMARY KEY (id)
 );
 
@@ -41,7 +42,7 @@ INSERT INTO Uzytkownicy VALUES
 ('222222', 'haslo', 'f', 'Jan', 'Kowalski'),
 ('444444', 'lol', 'f', 'Bartosz', 'Bebecki');
 
-INSERT INTO Wybory (id, nazwa, liczba_posad, termin_zglaszania, termin_rozpoczecia, termin_zakonczenia) VALUES
+INSERT INTO Wybory VALUES
 (1, 'Przewodniczacy SU', 1, '2024-04-01', '2022-04-02', '2022-04-20'),
 (2, 'Wiceprzewodniczacy SU', 2, '2024-04-01', '2024-04-02', '2024-04-20'),
 (3, 'Rada ds. rownosci', 6, '2024-03-01', '2023-03-02', '2023-03-30'),
