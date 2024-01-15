@@ -123,3 +123,17 @@ def komisja():
     if not session.get('logged') or session.get('index') != '000000':
         return redirect(url_for('login'))
     return render_template('komisja.html')
+
+@app.route("/rej_wyborcy", methods = ['GET', 'POST'])
+def rej_wyborcy():
+    if not session.get('logged') or session.get('index') != '000000':
+        return redirect(url_for('login'))
+    return render_template('rej_wyborcy.html')
+
+@app.route("/rej_wyborow", methods = ['GET', 'POST'])
+def rej_wyborow():
+    ...
+
+@app.route("/publikacja", methods = ['GET', 'POST'])
+def publikacja():
+    ...

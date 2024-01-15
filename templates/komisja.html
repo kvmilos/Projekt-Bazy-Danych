@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Komisja</title>
+</head>
+<body>
+    <h1>Komisja</h1>
+    <ul>
+        <li><a href="{{ url_for('rej_wyborcy') }}">Zarejestruj wyborcę</a></li>
+        <li><a href="{{ url_for('rej_wyborow') }}">Zarejestruj wybory</a></li>
+        <li><a href="{{ url_for('publikacja') }}">Opublikuj wyniki wyborów</a></li>
+    </ul>
+
+{% block komisja %}{% endblock %}
+</body>
+<a href="{{ url_for('login') }}" class="button">Wyloguj</a>
+</html>
