@@ -160,13 +160,13 @@ def publikacja():
     if not session.get('logged') or session.get('index') != '000000':
         return redirect(url_for('login'))
     if request.method == 'GET':
-        wybory = cur.execute("SELECT * FROM Wybory")
+        wybory = cur.execute("SELECT * FROM Wybory WHERE czy_opublikowane = 'f'")
         wybory = cur.fetchall()
         return render_template('publikacja.html', wybory=wybory)
     else:
         id_wyb = request.form['wybory']
         cur.execute("SELECT * FROM Wybory WHERE id = %s", (id_wyb))
         wybory = cur.fetchall()
-        cur.execute("SELECT * FROM Kandydaci NATURAL JOIN Uzytkownicy WHERE id_wybory = %s", (id_wyb))
-        kandydaci = cur.fetchall()
-        return render_template('publikacja2.html', wybory=wybory, kandydaci=kandydaci)
+        cur.execute("UPDATE Wybory SET czy_opublikowane = 't' WHERE id = %s", (id_wyb))
+        conn.commit()
+        return render_template('komisja2.html')
