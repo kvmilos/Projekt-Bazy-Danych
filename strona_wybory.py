@@ -48,7 +48,7 @@ def wyborca():
 def zglaszanie():
     if not session.get('logged') or session.get('index') == '000000':
         return redirect(url_for('login'))
-    cur.execute("SELECT * FROM Wybory")
+    cur.execute("SELECT * FROM Wybory WHERE termin_zglaszania >= %s", (data,))
     wybory = cur.fetchall()
     if request.method == 'POST':
         indeks_kandydata = request.form['index']
