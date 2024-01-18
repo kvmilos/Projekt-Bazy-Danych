@@ -8,7 +8,7 @@ CREATE TABLE Uzytkownicy (
 );
 
 CREATE TABLE Wybory (
-  id INTEGER UNIQUE NOT NULL,
+  id SERIAL UNIQUE NOT NULL,
   nazwa TEXT NOT NULL,
   liczba_posad INTEGER NOT NULL,
   termin_zglaszania DATE NOT NULL,
