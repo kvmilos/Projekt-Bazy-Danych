@@ -163,7 +163,7 @@ def publikacja():
     if not session.get('logged') or session.get('index') != '000000':
         return redirect(url_for('login'))
     if request.method == 'GET':
-        wybory = cur.execute("SELECT * FROM Wybory WHERE czy_opublikowane = 'f'")
+        wybory = cur.execute("SELECT * FROM wybory WHERE czy_opublikowane = 'f' AND termin_zakonczenia >= %s", (data,))
         wybory = cur.fetchall()
         return render_template('publikacja.html', wybory=wybory)
     else:
