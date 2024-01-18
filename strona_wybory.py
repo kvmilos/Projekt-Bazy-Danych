@@ -67,7 +67,7 @@ def glosowanie():
     if not session.get('logged') or session.get('index') == '000000':
         return redirect(url_for('login'))
     index = session.get('index')
-    cur.execute("SELECT * FROM Wybory WHERE ")
+    cur.execute("SELECT * FROM Wybory WHERE termin_rozpoczecia <= %s AND termin_zakonczenia >= %s", (data, data))
     wybory = cur.fetchall()
     if request.method == 'GET':
         return render_template('glosowanie.html', wybory=wybory)
