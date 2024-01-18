@@ -103,7 +103,7 @@ def glosowanie2():
 def ogladanie_wynikow():
     if not session.get('logged') or session.get('index') == '000000':
         return redirect(url_for('login'))
-    cur.execute("SELECT * FROM Wybory")
+    cur.execute("SELECT * FROM Wybory WHERE czy_opublikowane = 't'")
     wybory = cur.fetchall()
     if request.method == 'GET':
         return render_template('ogladanie_wynikow.html', wybory=wybory)
