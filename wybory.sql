@@ -43,7 +43,7 @@ INSERT INTO Uzytkownicy VALUES
 ('444444', 'lol', 'f', 'Bartosz', 'Bebecki');
 
 INSERT INTO Wybory VALUES
-(1, 'Przewodniczacy SU', 1, '2024-04-01', '2022-04-02', '2022-04-20'),
-(2, 'Wiceprzewodniczacy SU', 2, '2024-04-01', '2024-04-02', '2024-04-20'),
-(3, 'Rada ds. rownosci', 6, '2024-03-01', '2023-03-02', '2023-03-30'),
+(1, 'Przewodniczacy SU', 1, '2022-04-01', '2022-04-02', '2022-04-20'),
+(2, 'Wiceprzewodniczacy SU', 2, '2024-01-01', '2024-01-02', '2024-04-20'),
+(3, 'Rada ds. rownosci', 6, '2023-03-01', '2023-03-02', '2023-03-30'),
 (4, 'losowe', 4, '2024-02-01', '2024-02-02', '2024-12-31');
