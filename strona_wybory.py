@@ -128,12 +128,45 @@ def komisja():
 def rej_wyborcy():
     if not session.get('logged') or session.get('index') != '000000':
         return redirect(url_for('login'))
-    return render_template('rej_wyborcy.html')
+    if request.method == 'GET':
+        return render_template('rej_wyborcy.html')
+    else:
+        indeks = request.form['index']
+        haslo = request.form['haslo']
+        imie = request.form['imie']
+        nazwisko = request.form['nazwisko']
+        cur.execute("INSERT INTO Uzytkownicy VALUES (%s, %s, 'f', %s, %s)", (indeks, haslo, imie, nazwisko))
+        conn.commit()
+        return render_template('komisja2.html')
 
 @app.route("/rej_wyborow", methods = ['GET', 'POST'])
 def rej_wyborow():
-    ...
+    if not session.get('logged') or session.get('index') != '000000':
+        return redirect(url_for('login'))
+    if request.method == 'GET':
+        return render_template('rej_wyborow.html')
+    else:
+        nazwa = request.form['nazwa']
+        liczba_posad = request.form['liczba_posad']
+        data_zgloszen = request.form['data_zgloszen']
+        start_glosowania = request.form['start_glosowania']
+        koniec_glosowania = request.form['koniec_glosowania']
+        cur.execute("INSERT INTO Wybory (nazwa, liczba_posad, termin_zglaszania, termin_rozpoczecia, termin_zakonczenia) VALUES (%s, %s, %s, %s, %s)", (nazwa, liczba_posad, data_zgloszen, start_glosowania, koniec_glosowania))
+        conn.commit()
+        return render_template('komisja2.html')
 
 @app.route("/publikacja", methods = ['GET', 'POST'])
 def publikacja():
-    ...
+    if not session.get('logged') or session.get('index') != '000000':
+        return redirect(url_for('login'))
+    if request.method == 'GET':
+        wybory = cur.execute("SELECT * FROM Wybory")
+        wybory = cur.fetchall()
+        return render_template('publikacja.html', wybory=wybory)
+    else:
+        id_wyb = request.form['wybory']
+        cur.execute("SELECT * FROM Wybory WHERE id = %s", (id_wyb))
+        wybory = cur.fetchall()
+        cur.execute("SELECT * FROM Kandydaci NATURAL JOIN Uzytkownicy WHERE id_wybory = %s", (id_wyb))
+        kandydaci = cur.fetchall()
+        return render_template('publikacja2.html', wybory=wybory, kandydaci=kandydaci)

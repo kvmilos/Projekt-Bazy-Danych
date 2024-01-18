@@ -1,0 +1,12 @@
+{% extends "komisja.html" %}
+{% block komisja %}
+<form action="{{ url_for('publikacja') }}" method="post">
+    <select class="form-group">
+        <label>Wybory:</label>
+        {% for wybor in wybory %}
+            <option value="{{ wybor[0] }}">{{ wybor[1] }}</option>
+        {% endfor %}
+        </select>
+    <input type="submit" value="Opublikuj wyniki">
+</form>
+{% endblock %}
