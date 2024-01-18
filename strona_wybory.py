@@ -1,11 +1,14 @@
 from flask import Flask, request, render_template, redirect, url_for, session
 import psycopg2
+from datetime import date
 
 app = Flask(__name__)
 app.secret_key = 'projekt123'
 
 conn = psycopg2.connect(database='kvmilos')
 cur = conn.cursor()
+
+data = date.today()
 
 @app.route("/")
 def homepage():
@@ -64,7 +67,7 @@ def glosowanie():
     if not session.get('logged') or session.get('index') == '000000':
         return redirect(url_for('login'))
     index = session.get('index')
-    cur.execute("SELECT * FROM Wybory")
+    cur.execute("SELECT * FROM Wybory WHERE ")
     wybory = cur.fetchall()
     if request.method == 'GET':
         return render_template('glosowanie.html', wybory=wybory)
